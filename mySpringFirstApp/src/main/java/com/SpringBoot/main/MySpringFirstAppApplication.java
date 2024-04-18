@@ -43,8 +43,14 @@ public class MySpringFirstAppApplication {
 		byUsername.forEach(u->System.out.println(u));
 		
 		User distinctByUsernameAndPassword = userRepository.findDistinctByUsernameAndPassword("Chintan Ganeshwala", "Chintan");
-		System.out.println(distinctByUsernameAndPassword.toString());
+		System.out.println(distinctByUsernameAndPassword.getUsername()+" <======> "+distinctByUsernameAndPassword.getPassword());
 		
+		userRepository.getUser().forEach(u->{
+			System.out.println(u.toString());
+		});;
+		
+		String userPassowrd = userRepository.getUserPassowrd("Ganeshwc");
+		System.out.println(userPassowrd.toString());
 	}
 
 }

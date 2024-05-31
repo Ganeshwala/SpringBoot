@@ -38,13 +38,13 @@ public class SecurityConfiguration {
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity https) throws Exception {
 		return https
-			 .csrf(csrf->csrf.disable())
+			 .csrf(Customizer.withDefaults())
 			 .authorizeHttpRequests((authorizeHttpRequests) ->
  				authorizeHttpRequests
- 					.requestMatchers("/products/welcome").permitAll()
- 					.requestMatchers("/products/all").hasAnyRole("ADMIN")
- 					.requestMatchers("/products/id").hasRole("USER")
- 					.anyRequest().authenticated()
+ 					.requestMatchers("/products/welcome")
+ 					.permitAll()
+ 					.requestMatchers("/products/**")
+					.authenticated()
 			 )
 			 .formLogin(Customizer.withDefaults())
 			 .httpBasic(Customizer.withDefaults())

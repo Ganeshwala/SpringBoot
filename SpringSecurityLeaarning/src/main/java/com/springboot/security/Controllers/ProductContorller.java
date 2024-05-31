@@ -25,12 +25,13 @@ public class ProductContorller {
 	}
 	
 	@GetMapping("/all")
-
+	@PreAuthorize("hasAuthority('ROLE_ADMIN')")
 	public List<Product> getAllProducts(){
 		return pServices.getAllProduct();
 	}
 	
 	@GetMapping("/{id}")
+	@PreAuthorize("hasAuthority('ROLE_USER')")
 	public Product getProductById(@PathVariable int id) {
 		return pServices.getProductId(id);
 	}
